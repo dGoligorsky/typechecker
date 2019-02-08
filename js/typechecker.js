@@ -6,7 +6,12 @@ const typesizeOutput = document.querySelector("span.typesize-output")
 const lineheightTag = document.querySelector(`input[name="lineheight"]`)
 const lineheightOutput = document.querySelector("span.lineheight-output")
 
+const fontweightTag = document.querySelector(`input[name="fontweight"]`)
+const fontweightOutput = document.querySelector("span.fontweight-output")
+
 const italicTag = document.querySelector(`input[name="italic"]`)
+
+const typefaceTag = document.querySelector(`select[name="typeface"]`)
 
 const outputTag = document.querySelector("textarea.output")
 const originalText = outputTag.value
@@ -29,12 +34,23 @@ outputTag.addEventListener("keyup", function() {
     sentenceTag.value = this.value
 })
 
+// when I change my select for typeface, update the font family
+
+typefaceTag.addEventListener("input", function() {
+    outputTag.style.fontFamily = this.value
+})
+
 // when I change my type size slider, update the text next to it in the span
 // and change the outputTag's font size
 
 typesizeTag.addEventListener("input", function() {
     outputTag.style.fontSize = this.value + "px"
     typesizeOutput.innerHTML = this.value + "px"
+})
+
+fontweightTag.addEventListener("input", function() {
+    outputTag.style.fontWeight = this.value
+    fontweightOutput.innerHTML = this.value
 })
 
 lineheightTag.addEventListener("input", function() {
@@ -52,3 +68,4 @@ italicTag.addEventListener("change", function() {
         outputTag.style.fontStyle = ""
     }
 })
+
