@@ -13,6 +13,8 @@ const italicTag = document.querySelector(`input[name="italic"]`)
 
 const typefaceTag = document.querySelector(`select[name="typeface"]`)
 
+const colorTags = document.querySelectorAll("div.colors div")
+
 const outputTag = document.querySelector("textarea.output")
 const originalText = outputTag.value
 
@@ -69,3 +71,20 @@ italicTag.addEventListener("change", function() {
     }
 })
 
+// go through all of my color tags, then...
+// when I click one of them, change the background color and the text color
+// and make this tag be "selected"
+
+colorTags.forEach(tag => {
+    tag.addEventListener("click", function() {
+        outputTag.style.backgroundColor = this.style.backgroundColor
+        outputTag.style.color = this.style.color
+        
+        // reset the classes so the selected border styling is only on the selected tag
+        colorTags.forEach(tag => {
+            tag.classList.remove("selected")
+        })
+
+        this.classList.add("selected")
+    })
+})
